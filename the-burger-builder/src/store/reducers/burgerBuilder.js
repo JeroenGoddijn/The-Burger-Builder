@@ -36,7 +36,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_INGREDIENTS:
       return {
         ...state,
-        ingredients: action.ingredients,
+        // Order of ingredients below determines the order in which ingredients are shown in burgerBuilder
+        ingredients: {
+          bacon: action.ingredients.bacon,
+          cheese: action.ingredients.cheese,
+          meat: action.ingredients.meat,
+          lettuce: action.ingredients.lettuce
+        },
         error: false
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
