@@ -5,6 +5,8 @@ import Button from "../../../components/UI/Button/Button";
 import classes from "./ContactData.css";
 import axios from "../../../axios-orders";
 import Spinner from "../../../components/UI/Spinner/Spinner";
+import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
+import * as actionTypes from "../../../store/actions/order";
 
 class ContactData extends Component {
   state = {
@@ -41,6 +43,7 @@ class ContactData extends Component {
       deliveryMethod: "asap"
     };
 
+    this.props.onOrderBurger(order);
   };
 
   render() {
@@ -111,4 +114,9 @@ const mapStateToProps = (state) => {
     price: state.totalPrice
   };
 };
-export default connect(mapStateToProps)(ContactData);
+
+const mapDispatchToProps = (dispatch) => {
+  onOrderBurger: (orderData) =>
+    dispatch(actionTypes.purchaseBurgerStart(orderData));
+};
+export default connect(mapStateToProps)(withErrorHandler(ContactData, axios));
