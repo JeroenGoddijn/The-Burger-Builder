@@ -8,6 +8,8 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import * as actionTypes from "../../../store/actions/order";
 
+import Input from "../../../components/UI/Input/Input";
+
 class ContactData extends Component {
   state = {
     name: "",
@@ -49,48 +51,13 @@ class ContactData extends Component {
   render() {
     let form = (
       <form>
-        <input
-          className={classes.Input}
-          type="text"
-          name="name"
-          placeholder="Your name"
-        />
-        <input
-          className={classes.Input}
-          type="text"
-          name="email"
-          placeholder="Your email"
-        />
-        <input
-          className={classes.Input}
-          type="text"
-          name="street"
-          placeholder="Your street"
-        />
-        <input
-          className={classes.Input}
-          type="text"
-          name="zipcode"
-          placeholder="Your zipcode"
-        />
-        <input
-          className={classes.Input}
-          type="text"
-          name="city"
-          placeholder="Your city"
-        />
-        <input
-          className={classes.Input}
-          type="text"
-          name="region"
-          placeholder="Your region"
-        />
-        <input
-          className={classes.Input}
-          type="text"
-          name="country"
-          placeholder="Your country"
-        />
+        <Input type="text" name="name" placeholder="Your name" />
+        <Input type="text" name="email" placeholder="Your email" />
+        <Input type="text" name="street" placeholder="Your street" />
+        <Input type="text" name="zipcode" placeholder="Your zipcode" />
+        <Input type="text" name="city" placeholder="Your city" />
+        <Input type="text" name="region" placeholder="Your region" />
+        <Input type="text" name="country" placeholder="Your country" />
         <Button btnType="Success" clicked={this.orderHandler}>
           ORDER
         </Button>
