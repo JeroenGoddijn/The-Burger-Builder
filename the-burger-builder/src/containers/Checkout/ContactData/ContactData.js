@@ -12,14 +12,75 @@ import Input from "../../../components/UI/Input/Input";
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      zipcode: "",
-      city: "",
-      region: "",
-      country: ""
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name"
+        },
+        value: ""
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "email",
+          placeholder: "Your Email-address"
+        },
+        value: ""
+      },
+      // address: {
+      street: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Street + Housenumber"
+        },
+        value: ""
+      },
+      zipcode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Zipcode"
+        },
+        value: ""
+      },
+      city: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "City"
+        },
+        value: ""
+      },
+      region: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Region/State"
+        },
+        value: ""
+      },
+      // country: {
+      //   elementType: "input",
+      //   elementConfig: {
+      //     type: "text",
+      //     placeholder: "Your Name"
+      //   },
+      //   value: ""
+      // }
+      // },
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" }
+          ]
+        },
+        value: ""
+      }
     },
     loading: false
   };
@@ -30,34 +91,38 @@ class ContactData extends Component {
 
     const order = {
       ingredients: this.props.ings,
-      price: this.props.price,
-      customer: {
-        name: "Jeroen Goddijn",
-        address: {
-          street: "Test street 1",
-          zipcode: "77002",
-          city: "Houston",
-          region: "Texas",
-          country: "United States"
-        },
-        email: "test@test.com"
-      },
-      deliveryMethod: "asap"
+      price: this.props.price
     };
 
     this.props.onOrderBurger(order);
   };
 
+  inputChangedHandler = (event, inputIdentifier) => {
+    const updatedOrderForm = { ...this.state.orderForm };
+    const updatedFormElement = { ...updatedOrderForm[inputIdentifier] };
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    this.setState({ orderForm: updatedOrderForm });
+  };
   render() {
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
     let form = (
       <form>
-        <Input type="text" name="name" placeholder="Your name" />
-        <Input type="text" name="email" placeholder="Your email" />
-        <Input type="text" name="street" placeholder="Your street" />
-        <Input type="text" name="zipcode" placeholder="Your zipcode" />
-        <Input type="text" name="city" placeholder="Your city" />
-        <Input type="text" name="region" placeholder="Your region" />
-        <Input type="text" name="country" placeholder="Your country" />
+        {formElementsArray.map((formElement) => (
+          <Input
+            key={formElement.id}
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+          />
+        ))}
         <Button btnType="Success" clicked={this.orderHandler}>
           ORDER
         </Button>
