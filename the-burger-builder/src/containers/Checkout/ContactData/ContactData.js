@@ -20,6 +20,7 @@ class ContactData extends Component {
           placeholder: "Your Name"
         },
         value: "",
+        valueType: "name",
         validation: {
           required: true
         },
@@ -34,6 +35,7 @@ class ContactData extends Component {
           placeholder: "Street + Housenumber"
         },
         value: "",
+        valueType: "street",
         validation: {
           required: true
         },
@@ -47,6 +49,7 @@ class ContactData extends Component {
           placeholder: "Zipcode"
         },
         value: "",
+        valueType: "zipcode",
         validation: {
           required: true,
           minLength: 5,
@@ -62,6 +65,7 @@ class ContactData extends Component {
           placeholder: "City"
         },
         value: "",
+        valueType: "city",
         validation: {
           required: true
         },
@@ -75,6 +79,7 @@ class ContactData extends Component {
           placeholder: "Region/State"
         },
         value: "",
+        valueType: "region/state",
         validation: {
           required: true
         },
@@ -97,6 +102,7 @@ class ContactData extends Component {
           placeholder: "Your Email-address"
         },
         value: "",
+        valueType: "e-mail",
         validation: {
           required: true
         },
