@@ -8,11 +8,7 @@ import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Orders extends Component {
-  state = {
-    loading: true
-  };
-
-  componentWillMount() {
+  componentDidMount() {
     this.props.onFetchOrders();
   }
 
