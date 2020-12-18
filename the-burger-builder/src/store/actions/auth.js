@@ -67,7 +67,7 @@ export const auth = (email, password, isSignup) => {
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(
           checkAuthTimeout(
-            expirationDate.getSeconds() - new Date().getSeconds()
+            (expirationDate.getTime() - new Date().getTime()) / 1000
           )
         );
       })
