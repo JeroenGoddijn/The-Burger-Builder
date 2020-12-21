@@ -4,6 +4,17 @@ import classes from "./Order.css";
 
 const order = (props) => {
   const customerName = props.customerName;
+  const orderDateOptions = {
+    // weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+  const orderDate = new Date(props.orderDate).toLocaleDateString(
+    undefined,
+    orderDateOptions
+  );
+  const orderId = props.orderId;
   const ingredients = [];
 
   for (let ingredientName in props.ingredients) {
@@ -33,8 +44,8 @@ const order = (props) => {
   return (
     <div className={classes.Order}>
       <div className={classes.OrderInfo}>
-        <div>Order#: {customerName}</div>
-        <div>Order Date: {customerName}</div>
+        <div>Order#: {orderId}</div>
+        <div>Order Date: {orderDate}</div>
         <div>Customer Name: {customerName}</div>
       </div>
       <p>Ingredients: {ingredientOutput}</p>

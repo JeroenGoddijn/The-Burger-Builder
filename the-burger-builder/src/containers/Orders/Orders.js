@@ -21,6 +21,8 @@ class Orders extends Component {
           ingredients={order.ingredients}
           price={order.price}
           customerName={order.orderData.name}
+          orderDate={order.orderData.orderDate}
+          orderId={order.id}
         />
       ));
     }

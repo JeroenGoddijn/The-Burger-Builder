@@ -131,6 +131,8 @@ class ContactData extends Component {
     event.preventDefault();
 
     const formData = {};
+    // add OrderDate information
+    formData["orderDate"] = new Date();
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
         formElementIdentifier
