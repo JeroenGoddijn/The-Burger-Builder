@@ -1,8 +1,23 @@
 .Order {
-    width: 80%;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    padding: 10px;
-    margin: 10px auto;
-    box-sizing: border-box;
+  width: 80%;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  margin: 10px auto;
+  box-sizing: border-box;
+}
+.OrderInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.OrderInfo div {
+  width: fit-content;
+  /* padding: 1rem; */
+  /* background-color: #33b5e5;
+  border: 2px solid #fff;
+  color: #fff;
+  text-align: center; */
 }

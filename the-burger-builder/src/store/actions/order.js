@@ -62,11 +62,13 @@ export const fetchOrdersStart = () => {
   };
 };
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, customerId) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
+    const queryParams =
+      "?auth=" + token + '&orderBy="customerId"&equalTo="' + customerId + '"';
     axios
-      .get("/orders.json?auth=" + token)
+      .get("/orders.json" + queryParams)
       .then((res) => {
         const fetchedOrders = [];
         for (let key in res.data) {
@@ -78,6 +80,7 @@ export const fetchOrders = (token) => {
         dispatch(fetchOrdersSuccess(fetchedOrders));
       })
       .catch((err) => {
+        console.log(err);
         dispatch(fetchOrdersFail(err));
       });
   };
