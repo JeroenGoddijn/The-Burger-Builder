@@ -32,11 +32,11 @@ export const logout = () => {
 };
 
 // checkAuthTimeout checks when the accessToken expires and then actively logs out the user
-export const checkAuthTimeout = (expirationDate) => {
+export const checkAuthTimeout = (expirationTime) => {
   return (dispatch) => {
     setTimeout(() => {
       dispatch(logout());
-    }, expirationDate * 1000);
+    }, expirationTime * 1000);
   };
 };
 
@@ -86,7 +86,7 @@ export const authCheckState = () => {
       dispatch(logout());
     } else {
       const expirationDate = new Date(localStorage.getItem("expirationDate"));
-      if (expirationDate > new Date()) {
+      if (expirationDate <= new Date()) {
         dispatch(logout());
       } else {
         const userId = localStorage.getItem("userId");

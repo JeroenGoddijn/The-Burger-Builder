@@ -25,7 +25,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  /* preloadedState, */
   composeEnhancers(applyMiddleware(thunk))
 );
 
