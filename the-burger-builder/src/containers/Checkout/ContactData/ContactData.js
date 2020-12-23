@@ -133,7 +133,7 @@ class ContactData extends Component {
 
     const formData = {};
     // add OrderDate information
-    formData["orderDate"] = new Date();
+    // formData["orderDate"] = new Date();
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
         formElementIdentifier
@@ -143,7 +143,8 @@ class ContactData extends Component {
       ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
-      customerId: this.props.userId
+      customerId: this.props.userId,
+      orderDate: new Date()
     };
 
     this.props.onOrderBurger(order, this.props.token);

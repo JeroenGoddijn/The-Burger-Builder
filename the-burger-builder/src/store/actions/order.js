@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-orders";
+import { sortByProperty } from "../../shared/utility";
 
 export const purchaseBurgerSuccess = (id, orderData) => {
   return {
@@ -77,7 +78,13 @@ export const fetchOrders = (token, customerId) => {
             id: key
           });
         }
-        dispatch(fetchOrdersSuccess(fetchedOrders));
+        // sorting fetchedOrders by orderDate with newest order first
+        // console.log(fetchedOrders.sort(sortByProperty("orderDate")).reverse());
+        dispatch(
+          fetchOrdersSuccess(
+            fetchedOrders.sort(sortByProperty("orderDate")).reverse()
+          )
+        );
       })
       .catch((err) => {
         dispatch(fetchOrdersFail(err));
