@@ -11,7 +11,8 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../store/actions/index";
 import axios from "../../axios-orders";
 
-class BurgerBuilder extends Component {
+// We need to export this class component to be able to unit test it with Jest
+export class BurgerBuilder extends Component {
   state = {
     purchasing: false
   };

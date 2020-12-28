@@ -18,8 +18,28 @@ describe("<NavigationItems />", () => {
     expect(wrapper.find(NavigationItem)).toHaveLength(2);
   });
 
+  it("should render a 'Log In' <NavigationItem /> element if not authenticated", () => {
+    expect(
+      wrapper.contains(<NavigationItem link="/auth">Log In</NavigationItem>)
+    ).toEqual(true);
+  });
+
   it("should render three <NavigationItem /> elements if authenticated", () => {
     wrapper.setProps({ isAuthenticated: true });
     expect(wrapper.find(NavigationItem)).toHaveLength(3);
+  });
+
+  it("should render a 'Log Out' <NavigationItem /> element if authenticated", () => {
+    wrapper.setProps({ isAuthenticated: true });
+    expect(
+      wrapper.contains(<NavigationItem link="/logout">Log Out</NavigationItem>)
+    ).toEqual(true);
+  });
+
+  it("should render an 'Orders' <NavigationItem /> element if authenticated", () => {
+    wrapper.setProps({ isAuthenticated: true });
+    expect(
+      wrapper.contains(<NavigationItem link="/orders">Orders</NavigationItem>)
+    ).toEqual(true);
   });
 });
