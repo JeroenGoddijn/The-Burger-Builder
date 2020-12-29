@@ -17,7 +17,7 @@ describe("<Checkout />", () => {
     wrapper = shallow(<Checkout />);
   });
 
-  it("should render one <CheckoutSummary /> when purchased = false", () => {
+  it("should render one <CheckoutSummary /> element when purchased=false and path='/checkout' ", () => {
     wrapper.setProps({
       ings: {
         bacon: 2,
@@ -31,5 +31,53 @@ describe("<Checkout />", () => {
       }
     });
     expect(wrapper.find(CheckoutSummary)).toHaveLength(1);
+  });
+
+  it("should render one <ContactData /> element when purchased=false and path='/checkout/contact-data' ", () => {
+    wrapper.setProps({
+      ings: {
+        bacon: 2,
+        cheese: 2,
+        meat: 2,
+        lettuce: 2
+      },
+      purchased: false,
+      match: {
+        path: "/checkout/contact-data"
+      }
+    });
+    expect(wrapper.find(<ContactData />));
+  });
+
+  it("should redirect to '/' when purchased=true and path='/checkout' ", () => {
+    wrapper.setProps({
+      ings: {
+        bacon: 2,
+        cheese: 2,
+        meat: 2,
+        lettuce: 2
+      },
+      purchased: true,
+      match: {
+        path: "/checkout"
+      }
+    });
+    expect(wrapper.contains(<Redirect to="/" />)).toEqual(true);
+  });
+
+  it("should redirect to '/' when purchased=true and path='/checkout/contact-data' ", () => {
+    wrapper.setProps({
+      ings: {
+        bacon: 2,
+        cheese: 2,
+        meat: 2,
+        lettuce: 2
+      },
+      purchased: true,
+      match: {
+        path: "/checkout/contact-data"
+      }
+    });
+    expect(wrapper.contains(<Redirect to="/" />)).toEqual(true);
   });
 });
