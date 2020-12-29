@@ -11,7 +11,7 @@ import { updateObject, checkValidity } from "../../../shared/utility";
 
 import Input from "../../../components/UI/Input/Input";
 
-class ContactData extends Component {
+export class ContactData extends Component {
   state = {
     orderForm: {
       name: {
