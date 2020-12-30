@@ -16,13 +16,21 @@ describe("<ContactData />", () => {
     wrapper = shallow(<ContactData />);
   });
 
-  it("should render seven <Input /> components and 1 Button component ", () => {
+  it("should render seven <Input /> components ", () => {
     wrapper.setProps({
       match: {
         path: "/checkout/contact-data"
       }
     });
     expect(wrapper.find(Input)).toHaveLength(7);
+  });
+
+  it("should render one <Button /> component ", () => {
+    wrapper.setProps({
+      match: {
+        path: "/checkout/contact-data"
+      }
+    });
     expect(wrapper.find(Button)).toHaveLength(1);
   });
 });

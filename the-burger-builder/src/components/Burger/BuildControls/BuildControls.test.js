@@ -33,11 +33,17 @@ describe("<BuildControls />", () => {
     expect(wrapper.find(BuildControl)).toHaveLength(4);
   });
 
-//   it("should render one <Button /> elements with 'ORDER NOW' as it's label when isAuth=true", () => {
-//     expect(wrapper.contains(<button>ORDER NOW</button>)).toEqual(true);
-//   });
+  it("should render one <Button /> element", () => {
+    wrapper.setProps({ isAuth: true });
+    expect(wrapper.find("button")).toHaveLength(1);
+  });
 
-//   it("should render one <Button /> elements with 'SIGN IN TO ORDER' as it's label when isAuth=false", () => {
-//     expect(wrapper.contains(<button>SIGN IN TO ORDER</button>)).toEqual(true);
-//   });
+  it("should render one <Button /> elements with 'ORDER NOW' as it's label when isAuth=true", () => {
+    wrapper.setProps({ isAuth: true });
+    expect(wrapper.find("button").text()).toBe("ORDER NOW");
+  });
+
+  it("should render one <Button /> elements with 'SIGN IN TO ORDER' as it's label when isAuth=false", () => {
+    expect(wrapper.find("button").text()).toBe("SIGN IN TO ORDER");
+  });
 });
