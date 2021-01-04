@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../utility";
+import { updateObject } from "../../shared/utility";
 
 const initialState = {
   token: null,
@@ -27,7 +27,6 @@ const authSuccess = (state, action) => {
 
 const authFail = (state, action) => {
   let errorResponse = null;
-  console.log(action.error.message);
   switch (action.error.message) {
     case "EMAIL_EXISTS":
       errorResponse = "The email address is already in use by another account.";

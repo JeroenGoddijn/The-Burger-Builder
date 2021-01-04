@@ -32,11 +32,11 @@ export const logout = () => {
 };
 
 // checkAuthTimeout checks when the accessToken expires and then actively logs out the user
-export const checkAuthTimeout = (expirationDate) => {
+export const checkAuthTimeout = (expirationTime) => {
   return (dispatch) => {
     setTimeout(() => {
       dispatch(logout());
-    }, expirationDate * 1000);
+    }, expirationTime * 1000);
   };
 };
 
@@ -57,7 +57,6 @@ export const auth = (email, password, isSignup) => {
     axios
       .post(url, authData)
       .then((response) => {
-        console.log(response);
         const expirationDate = new Date(
           new Date().getTime() + response.data.expiresIn * 1000
         );
@@ -68,7 +67,6 @@ export const auth = (email, password, isSignup) => {
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
       .catch((err) => {
-        console.log(err);
         dispatch(authFail(err.response.data.error));
       });
   };
@@ -88,7 +86,7 @@ export const authCheckState = () => {
       dispatch(logout());
     } else {
       const expirationDate = new Date(localStorage.getItem("expirationDate"));
-      if (expirationDate > new Date()) {
+      if (expirationDate <= new Date()) {
         dispatch(logout());
       } else {
         const userId = localStorage.getItem("userId");
